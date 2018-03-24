@@ -4,11 +4,13 @@ import './App.css';
 import  './FruitasticApi.js';
 import _ from 'underscore';
 import './poly.js'
+import Name from './components/Name.js'
+import Row from './components/Row.js'
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {"data": [], "groups": {}, "total": 0, "items": []}
+		this.state = {"data": [], "groups": {}, "total": 0, "items": [], "response" :[]}
 	}
 
 	componentDidMount() {
@@ -18,17 +20,16 @@ class App extends Component {
 			groups = _.groupBy(response, (item) => { return item.favoriteFruit})
 			total = _.reduce(_.values(groups), (acc, i) => {return acc + i.length}, 0);
 			items = this.parseGroups(groups)
-			this.setState({data, groups, total, items});
+			this.setState({data, groups, total, items, response});
 		});
 	}
 
 	parseGroups(groupsObj){
 		var results = [];
 		for (let prop in groupsObj){
-			results.push({name: prop, count: groupsObj[prop].length})
+			results.push({name: prop, count: groupsObj[prop].length, bgcolor: this.generateColor()})
 		}
-
-		return results;
+		return (_.sortBy(results, (item) => {return item.count})).reverse();
 	}
 
 	selectFruit(item, rowIdx){
@@ -39,8 +40,23 @@ class App extends Component {
 			row.className = "table-row";
 		}
 		row.className += " active";
+		this.filter(item);
 
     	console.log(`Fruit selected: ${item.name}, ${item.count}`);
+	}
+
+	filter(which){
+		var data = _.filter(this.state.response, (item)=> {return item.favoriteFruit === which.name});
+		this.setState({data});
+	}
+
+	generateColor(){
+		var letters = '0123456789ABCDEF',
+			color = '#';
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
 	}
 
 	render() {
@@ -56,15 +72,16 @@ class App extends Component {
 							{this.state.items.map((item, idx) => {
 								var style = {
 									width: (item.count * 100) / this.state.total + "%",
+									backgroundColor: item.bgcolor
 								};
-								return <tr key={idx} className="table-row" id={'tr-' + idx}><td><div onClick={() => {this.selectFruit(item, idx)}} className="name left-align">{item.name}</div></td><td className="row-holder"><div className="row-background"><div className="total" style={style}>&nbsp;</div></div></td><td>{item.count}</td></tr>
+								return <Row onClick={this.selectFruit.bind(this)} key={idx} idx={idx} item={item} style={style}></Row>
 							})}
 						</tbody>
 					</table>
 				</div>
 				<ul className="name-holder">
 					{this.state.data.map((item, idx) => {
-						return <li className="person" key={idx}><span className="left-float">{item.name}</span><span className="right-float">{item.favoriteFruit}</span></li>
+						return <Name key={idx} item={item}></Name>
 					})}
 				</ul>
 			</div>

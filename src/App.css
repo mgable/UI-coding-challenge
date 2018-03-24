@@ -46,15 +46,17 @@
 }
 
 .total {
-   background-color: red;
+   background-color: darkgray;
 }
 
 .name {
   cursor: pointer;
+  padding: 0 0 0 8px;
 }
 
 .table {
   width: 100%;
+  border-spacing: 0;
 }
 
 .right-float {

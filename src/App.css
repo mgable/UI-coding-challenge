@@ -72,6 +72,10 @@ h5 {
   height: 30px;
 }
 
+.table-row {
+  cursor: pointer;
+}
+
 .table-row.active {
   background-color: yellow;
 }

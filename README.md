@@ -1,4 +1,4 @@
-#Fruitastic Exercise
+# Fruitastic Exercise
 
 This goal of this exercise is to take JSON data from an external source, and to visualize it into a simple UI.
 
@@ -9,7 +9,7 @@ Use any library/framework you like and add whatever files you need. Style with C
 A UX mockup is provided.
   
   
-##Design spec:
+## Design spec:
 
 * Load data by calling FruitasticApi.get().
 * Create a horizontal bar chart (no more than 400px wide) that shows how popular each fruit is compared to the others. This should be based on the total number of favorites for each fruit. Each row should have a label for the name of the fruit, plus its total count. There's no need to show an axis with units on it.
@@ -18,7 +18,7 @@ A UX mockup is provided.
 * Do not cause a browser refresh, or navigate to another html page.
 
   
-##Stretch goals! (optional):
+## Stretch goals! (optional):
 
 - When a bar chart row is clicked, the list should be filtered to only display the people that chose that fruit as their favorite.
 - Create an animation where the bars grow to their correct width when the data is loaded.

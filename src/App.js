@@ -7,22 +7,28 @@ import Name from './components/Name.js'
 import Row from './components/Row.js'
 
 class App extends Component {
+	// data (collection) are the displayed {name} : {favoriteFruit} pairs
+	// total (number) is the total number of fruit for the charting 
+	// items (collection) are the displayed {name} {count} {bgcolor} for charting
+	// response (collection) is the raw response from FruitasticApi.js needed to refresh the names listing after filtering
+	// selected (null | string) is the select fruit
 	constructor(props) {
 		super(props);
-		this.state = {"data": [], "groups": {}, "total": 0, "items": [], "response" :[], "selected": null}
+		this.state = {"data": [], "total": 0, "items": [], "response" :[], "selected": null}
 	}
 
 	componentDidMount() {
-		let data, groups, total, items;
+		var data, groups, total, items;
 		window.FruitasticApi.get((response) => {
 			data = response;
 			groups = _.groupBy(response, (item) => { return item.favoriteFruit})
 			total = _.reduce(_.values(groups), (acc, i) => {return acc + i.length}, 0);
 			items = this.parseGroups(groups)
-			this.setState({data, groups, total, items, response});
+			this.setState({data, total, items, response});
 		});
 	}
 
+	// make the items collection of [{name, count, bgcolor}]
 	parseGroups(groupsObj){
 		var results = [];
 		for (let prop in groupsObj){
@@ -31,7 +37,9 @@ class App extends Component {
 		return (_.sortBy(results, (item) => {return item.count})).reverse();
 	}
 
+	// click handler for chart row
 	selectFruit(item, rowIdx){
+		// look mom, no jQuery!
 		var row = document.getElementById('tr-' + rowIdx),
 			allRows = document.getElementsByClassName('table-row');
 
@@ -49,8 +57,9 @@ class App extends Component {
 	}
 
 	filter(which){
+		var data;
 		if (this.state.selected !== which.name){
-			var data = _.filter(this.state.response, (item)=> {return item.favoriteFruit === which.name});
+			data = _.filter(this.state.response, (item)=> {return item.favoriteFruit === which.name});
 			this.setState({data, selected: which.name});
 		} else {
 			this.setState({data: this.state.response, selected: null});
@@ -60,7 +69,7 @@ class App extends Component {
 	generateColor(){
 		var letters = '0123456789ABCDEF',
 			color = '#';
-		for (var i = 0; i < 6; i++) {
+		for (let i = 0; i < 6; i++) {
 			color += letters[Math.floor(Math.random() * 16)];
 		}
 		return color;

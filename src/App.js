@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import  './FruitasticApi.js';
 import _ from 'underscore';
-import './poly.js'
 import Name from './components/Name.js'
 import Row from './components/Row.js'
 

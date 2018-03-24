@@ -1,0 +1,15 @@
+.right-float {
+	float: right;
+}
+
+.left-float {
+	float: left;
+}
+
+.person{
+	list-style-type: none;
+	clear: both;
+	border-bottom: 1px solid lightgray;
+	margin: 0 0 10px 0;
+	height: 24px;
+}

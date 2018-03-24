@@ -30,54 +30,13 @@
   to { transform: rotate(360deg); }
 }
 
-
-.row-background {
-  background-color: lightgray;
-  width: 100%;
-}
-
-
-.left-align {
-  text-align: left;
-}
-
-.left-float {
-  float: left;
-}
-
-.total {
-   background-color: darkgray;
-}
-
-.name {
-  cursor: pointer;
-  padding: 0 0 0 8px;
-}
-
 .table {
   width: 100%;
   border-spacing: 0;
 }
 
-.right-float {
-  float: right;
-}
-
 h5 {
   display: inline-block;
-}
-
-.row-holder {
-  min-width: 150px;
-  height: 30px;
-}
-
-.table-row {
-  cursor: pointer;
-}
-
-.table-row.active {
-  background-color: yellow;
 }
 
 .chart-holder, .name-holder {
@@ -91,12 +50,4 @@ h5 {
 
 .name-holder {
   border-top: 0 none;
-}
-
-.name-holder .person{
-  list-style-type: none;
-    clear: both;
-    border-bottom: 1px solid lightgray;
-    margin: 0 0 10px 0;
-    height: 24px;
 }

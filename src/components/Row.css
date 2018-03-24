@@ -1,0 +1,30 @@
+.table-row {
+  cursor: pointer;
+}
+
+.table-row.active {
+  background-color: yellow;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.name {
+  cursor: pointer;
+  padding: 0 0 0 8px;
+}
+
+.row-background {
+  background-color: lightgray;
+  width: 100%;
+}
+
+.total {
+   background-color: darkgray;
+}
+
+.row-holder {
+  min-width: 150px;
+  height: 30px;
+}

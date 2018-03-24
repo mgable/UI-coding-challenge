@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  color: white;
+  margin: 0 0 20px;
+}
+
+.App-title {
+  font-size: 1.5em;
+  margin: 0 auto;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.row-background {
+  background-color: lightgray;
+  width: 100%;
+}
+
+
+.left-align {
+  text-align: left;
+}
+
+.left-float {
+  float: left;
+}
+
+.total {
+   background-color: red;
+}
+
+.name {
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+}
+
+.right-float {
+  float: right;
+}
+
+h5 {
+  display: inline-block;
+}
+
+.row-holder {
+  min-width: 150px;
+  height: 30px;
+}
+
+.table-row.active {
+  background-color: yellow;
+}
+
+.chart-holder, .name-holder {
+  border: 1px solid black;
+  margin: 0 auto;
+  max-width: 400px;
+  margin: auto;
+  background-color: white;
+  padding: 10px;
+}
+
+.name-holder {
+  border-top: 0 none;
+}
+
+.name-holder .person{
+  list-style-type: none;
+    clear: both;
+    border-bottom: 1px solid lightgray;
+    margin: 0 0 10px 0;
+    height: 24px;
+}

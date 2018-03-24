@@ -10,7 +10,7 @@ import Row from './components/Row.js'
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {"data": [], "groups": {}, "total": 0, "items": [], "response" :[]}
+		this.state = {"data": [], "groups": {}, "total": 0, "items": [], "response" :[], "selected": null}
 	}
 
 	componentDidMount() {
@@ -39,15 +39,23 @@ class App extends Component {
 		for(let row of allRows){
 			row.className = "table-row";
 		}
-		row.className += " active";
+
+		if (item.name !== this.state.selected){
+			row.className += " active";
+		}
+
 		this.filter(item);
 
     	console.log(`Fruit selected: ${item.name}, ${item.count}`);
 	}
 
 	filter(which){
-		var data = _.filter(this.state.response, (item)=> {return item.favoriteFruit === which.name});
-		this.setState({data});
+		if (this.state.selected !== which.name){
+			var data = _.filter(this.state.response, (item)=> {return item.favoriteFruit === which.name});
+			this.setState({data, selected: which.name});
+		} else {
+			this.setState({data: this.state.response, selected: null});
+		}
 	}
 
 	generateColor(){

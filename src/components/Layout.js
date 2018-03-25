@@ -2,7 +2,6 @@ import React from 'react';
 import Name from './Name.js';
 import Row from './Row.js';
 import logo from '../logo.svg';
-import spinner from '../2.gif';
 import './Layout.css'
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';

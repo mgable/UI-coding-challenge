@@ -18,6 +18,14 @@
 .row-background {
   background-color: lightgray;
   width: 100%;
+  -webkit-transition-property: width;
+  -webkit-transition-duration: 10s;
+  -webkit-transition-delay: 2s;
+  -webkit-transition-timing-function: linear;
+  transition-property: width;
+  transition-duration: 10s;
+  transition-delay: 2s;
+  transition-timing-function: linear;
 }
 
 .total {
@@ -27,4 +35,17 @@
 .row-holder {
   min-width: 150px;
   height: 30px;
+}
+
+.row-background-closed {
+  background-color: lightgray;
+  width: 0%;
+    -webkit-transition-property: width;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-delay: 0.5s;
+  -webkit-transition-timing-function: linear;
+  transition-property: width;
+  transition-duration: 1s;
+  transition-delay: 0.5s;
+  transition-timing-function: linear;
 }

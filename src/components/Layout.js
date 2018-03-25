@@ -8,10 +8,14 @@ import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
 
 const Layout = ({items, data, total, onChoiceClick, selected, waiting}) => {
-  var spinner = null;
+  var spinner = null, className;
   if (waiting){
     spinner = <div className="spinner-holder"><FontAwesome className='spinner' name='spinner' size='5x' spin style={{ color: 'white' }}/></div>
+    className = "row-background-close";
+  } else {
+    className = "row-background";
   }
+
 
   return (
       <div className="App">
@@ -29,7 +33,7 @@ const Layout = ({items, data, total, onChoiceClick, selected, waiting}) => {
                   width: (item.count * 100) / total + "%",
                   backgroundColor: item.bgcolor
                 };
-                return <Row onClick={() => onChoiceClick(item, idx, selected)} key={idx} idx={idx} item={item} style={style}></Row>
+                return <Row bgclass={className} onClick={() => onChoiceClick(item, idx, selected)} key={idx} idx={idx} item={item} style={style}></Row>
               })}
             </tbody>
           </table>

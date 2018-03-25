@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
 import { selectFruit } from '../actions'
 import Layout from '../components/Layout.js'
-import _ from 'underscore'
-
 
 function getItems(state){
 	return state.app.items;
@@ -47,38 +45,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onChoiceClick: (item, rowIdx, selected) => {
+			console.log(`Fruit selected: ${item.name}, ${item.count}`);
 			toggleRow(item, rowIdx, selected)
 			dispatch(selectFruit(item));
 		}
 	}
 }
-
-/*
-data = response;
-//  //    groups = _.groupBy(response, (item) => { return item.favoriteFruit})
-//  //    total = _.reduce(_.values(groups), (acc, i) => {return acc + i.length}, 0);
-//  //    items = this.parseGroups(groups)
-//  //    this.setState({data, total, items, response});
-*/
-
-/*
-const mapStateToProps = state => {
-  return {
-	choices: getChoices(state.quiz.questions[state.quiz.currentQuestion].choiceList),
-	image: getImage(state.quiz.questions[state.quiz.currentQuestion].image),
-	response: getResponse(state.quiz.questions[state.quiz.currentQuestion].response),
-	currentQuestion: getResponse(state.quiz.currentQuestion),
-	currentSelection: getResponse(state.quiz.currentSelection),
-  }
-}
-
-*/
-
-function getSelectedFruit(state){
-	return state;
-}
-
-
 
 const Fruit = connect(
 	mapStateToProps,

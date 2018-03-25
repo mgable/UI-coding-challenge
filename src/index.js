@@ -20,7 +20,7 @@ let store = createStore(
 
 store
   .dispatch(fetchPosts())
-  .then(() => {console.info("xxx");console.log(store.getState())})
+  .then(() => {console.log(store.getState())})
 
 ReactDOM.render(
 	<Provider store={store}>

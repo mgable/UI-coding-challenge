@@ -30,15 +30,12 @@ function p(state, action){
 
 
 function q(state, action){
-	console.info("q was called with");
-	console.info(state, action);
 	state.selected = state.selected === action.fruit.name ? null : action.fruit.name;
 	state.data = _filter(state, action.fruit.name);
 	return _.extend({}, state);
 }
 
 function _filter(state, which){
-	var data;
 	if (state.selected === which){
 		return _.filter(state.response, (item)=> {return item.favoriteFruit === which});
 	} else {

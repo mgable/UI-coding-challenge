@@ -1,5 +1,3 @@
-import _ from 'underscore'
-
 /*
  * action types
  */
@@ -30,30 +28,20 @@ export function receivePosts(json) {
 
 export function fetchPosts() { 
   return function (dispatch) { 
-    dispatch(getData()) 
+    //dispatch(getData()) 
     return fetchData()
       .then(
         response => response,
-        // Do not use catch, because that will also catch
-        // any errors in the dispatch and resulting render,
-        // causing a loop of 'Unexpected batch number' errors.
-        // https://github.com/facebook/react/issues/6895
         error => console.log('An error occurred.', error)
       )
-      .then(json =>
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
- 
-        dispatch(receivePosts(json))
+      .then(json => dispatch(receivePosts(json))
       )
   }
 }
 
-function fetchData(state = initialState, action){
+function fetchData(){
 	return new Promise((resolve, reject) => {
-		var data, groups, total, items;
 		window.FruitasticApi.get((response) => {
-			console.info("I got a response");
 			resolve({response});
 		});
 	});

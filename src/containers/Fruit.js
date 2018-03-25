@@ -18,6 +18,10 @@ function getSelected(state){
 	return state.app.selected;
 }
 
+function getWaiting(state){
+	return state.app.waiting;
+}
+
 function toggleRow(item, rowIdx, selected){
 	//look mom, no jQuery!
 	var row = document.getElementById('tr-' + rowIdx),
@@ -38,7 +42,8 @@ const mapStateToProps = state => {
 		data: getData(state),
 		items: getItems(state),
 		total: getTotal(state),
-		selected: getSelected(state)
+		selected: getSelected(state),
+		waiting: getWaiting(state)
 	}
 }
 

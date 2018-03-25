@@ -4,32 +4,34 @@ import _ from 'underscore'
 import './FruitasticApi.js'
 
  
-const initialState = {"data": [], "total": 0, "items": [], "response" :[], "selected": null};
+const initialState = {"data": [], "total": 0, "items": [], "response" :[], "selected": null, "waiting": null};
  
 function app(state = initialState, action) {
 	switch(action.type){
-		case GET_DATA: return r(state, action)
-		case SELECT_FRUIT: return q(state, action)
-		case RECEIVE_POSTS : return p(state, action)
+		case GET_DATA: return startWait(state, action)
+		case SELECT_FRUIT: return filterItems(state, action)
+		case RECEIVE_POSTS : return parseData(state, action)
 		default: return state
 	}  
 }
 
-function r(state, action){
+function startWait(state, action){
+	state.waiting = true;
 	return _.extend({}, state);
 }
 
-function p(state, action){
+function parseData(state, action){
 	let groups = getGroups(action.data.response);
 	state.response = action.data.response;
 	state.data = action.data.response;
     state.items = parseGroups(groups);
     state.total = getTotal(groups);
+    state.waiting = false;
 	return _.extend({}, state);
 }
 
 
-function q(state, action){
+function filterItems(state, action){
 	state.selected = state.selected === action.fruit.name ? null : action.fruit.name;
 	state.data = _filter(state, action.fruit.name);
 	return _.extend({}, state);

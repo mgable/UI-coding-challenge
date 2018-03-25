@@ -5,7 +5,6 @@
 export const GET_DATA = 'GET_DATA'
 export const SELECT_FRUIT = 'SELECT_FRUIT'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const initialState = {"data": [], "total": 0, "items": [], "response" :[], "selected": null};
 
 /*
  * action creators
@@ -19,17 +18,14 @@ export function selectFruit(fruit) {
   return { type: SELECT_FRUIT, fruit }
 }
 
-export function receivePosts(json) {
-  return {
-    type: RECEIVE_POSTS,
-    data: json //json.data.children.map(child => child.data),
-  }
+export function receivePosts(data) {
+  return { type: RECEIVE_POSTS, data }
 }
 
 export function fetchPosts() { 
   return function (dispatch) { 
-    //dispatch(getData()) 
-    return fetchData()
+    dispatch(getData()) 
+    return _fetchData()
       .then(
         response => response,
         error => console.log('An error occurred.', error)
@@ -39,7 +35,7 @@ export function fetchPosts() { 
   }
 }
 
-function fetchData(){
+function _fetchData(){
 	return new Promise((resolve, reject) => {
 		window.FruitasticApi.get((response) => {
 			resolve({response});

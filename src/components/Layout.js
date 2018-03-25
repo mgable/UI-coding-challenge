@@ -3,7 +3,7 @@ import Name from './Name.js';
 import Row from './Row.js';
 import logo from '../logo.svg';
 
-const Layout = ({items, data, total, onChoiceClick}) => {
+const Layout = ({items, data, total, onChoiceClick, selected}) => {
   return (
       <div className="App">
         <header className="App-header">
@@ -18,7 +18,7 @@ const Layout = ({items, data, total, onChoiceClick}) => {
                   width: (item.count * 100) / total + "%",
                   backgroundColor: item.bgcolor
                 };
-                return <Row onClick={() => onChoiceClick(item)} key={idx} idx={idx} item={item} style={style}></Row>
+                return <Row onClick={() => onChoiceClick(item, idx, selected)} key={idx} idx={idx} item={item} style={style}></Row>
               })}
             </tbody>
           </table>

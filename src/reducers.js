@@ -16,29 +16,29 @@ function app(state = initialState, action) {
 }
 
 function startWait(state, action){
-	state.waiting = true;
-	return _.extend({}, state);
+	let waiting = true;
+	return _.extend({...state, waiting});
 }
 
 function parseData(state, action){
-	let groups = getGroups(action.data.response);
-	state.response = action.data.response;
-	state.data = action.data.response;
-    state.items = parseGroups(groups);
-    state.total = getTotal(groups);
-    state.waiting = false;
-	return _.extend({}, state);
+	let groups = getGroups(action.data.response),
+		response = action.data.response,
+		data = action.data.response,
+    	items = parseGroups(groups),
+    	total = getTotal(groups),
+    	waiting = false;
+	return _.extend({...state, response, response, data, items, total, waiting});
 }
 
 
 function filterItems(state, action){
-	state.selected = state.selected === action.fruit.name ? null : action.fruit.name;
-	state.data = _filter(state, action.fruit.name);
-	return _.extend({}, state);
+	let selected = state.selected === action.fruit.name ? null : action.fruit.name,
+		data = _filter(state, selected, action.fruit.name);
+	return _.extend({...state, selected, data});
 }
 
-function _filter(state, which){
-	if (state.selected === which){
+function _filter(state, selected, which){
+	if (selected === which){
 		return _.filter(state.response, (item)=> {return item.favoriteFruit === which});
 	} else {
 		return state.response;
